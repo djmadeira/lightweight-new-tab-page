@@ -61,6 +61,15 @@ section {
   flex-basis: 20em;
 }
 
+h1 {
+  font-size: 1.8em;
+}
+
+h2 {
+  margin-bottom: $spacing-medium;
+  font-size: 1.2em;
+}
+
 .link-list {
   padding-left: 0;
   li {

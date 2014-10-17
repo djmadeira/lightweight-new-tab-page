@@ -44,6 +44,13 @@ section {
   padding: 0.6em;
   flex-basis: 20em; }
 
+h1 {
+  font-size: 1.8em; }
+
+h2 {
+  margin-bottom: 0.6em;
+  font-size: 1.2em; }
+
 .link-list {
   padding-left: 0; }
   .link-list li {
@@ -106,19 +113,26 @@ section {
   <section class="quick-links">
     <h1>Quick Links</h1>
     <ul class="link-list">
+      <h2>History</h2>
       <li><a class="button" href="chrome://history">History</a></li>
       <li><a class="button" href="chrome://downloads">Downloads</a></li>
+      <h2>Settings</h2>
+      <li><a class="button" href="chrome://settings">Settings</a></li>
       <li><a class="button" href="chrome://extensions">Extensions</a></li>
       <li><a class="button" href="chrome://bookmarks">Bookmarks Manager</a></li>
+      <h2>Chrome Internals</h2>
       <li><a class="button" href="chrome://chrome-urls">Chrome URLs</a></li>
+      <li><a class="button" href="chrome://apps">Apps</a></li>
+      <li><a class="button" href="chrome://flags">Flags</a></li>
+      <li><a class="button" href="chrome://net-internals#dns">Host Cache</a></li>
     </ul> 
   </section>
   <section class="utilities">
     <h1>Utilities</h1>
     <ul class="link-list">
-      <li><a class="button" href="chrome://net-internals#dns">DNS Settings</a></li>
+      <h2>Caches</h2>
       <li><a class="button" id="clear-cache" href="#">Clear HTTP cache</a></li>
-      <li><a id="clear-history" class="clear-history button" href="#">Clear history</a> <input class="value-increment" type="button" id="history-increment" value="1 day"><a id="clear-history-confirm" class="button confirm-button" href="#">You Sure?</a></li>
+      <li><a id="clear-history" class="clear-history button" href="#">Clear history</a> <input class="value-increment" type="button" id="history-increment" value="1 day"><a id="clear-history-confirm" class="button confirm-button" href="#">You sure?</a></li>
     </ul>
   </section>
   <footer class="credit"><a href="http://djmadeira.com">Created by DJ Madeira</a></footer>
