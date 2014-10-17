@@ -1,0 +1,18 @@
+{
+  "manifest_version": 2,
+
+  "name": "Developer's New Tab",
+  "description": "A new tab screen that's fast, simple, and customizable.",
+
+  "version": "0.0.0",
+
+  "permissions": [
+    "tabs",
+    "browsingData",
+    "history"
+  ],
+
+  "chrome_url_overrides" : {
+    "newtab": "newtab.html"
+  }
+}

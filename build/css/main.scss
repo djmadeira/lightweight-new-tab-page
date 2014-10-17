@@ -1,0 +1,123 @@
+$font-size: 18px;
+
+$spacing-medium: 0.6em;
+$spacing-large: 0.85em;
+
+$color-background: #fff;
+$color-text: rgb(92, 97, 102);
+$color-inactive: #999;
+$color-link: rgb(17, 85, 204);
+
+$confirm-tranistion-length: 0.4s;
+
+%chrome-button {
+  -webkit-appearance: none;
+  -webkit-user-select: none;
+  display: block;
+  background-image: -webkit-linear-gradient(#ededed, #ededed 38%, #dedede);
+  border: 1px solid rgba(0, 0, 0, 0.25);
+  border-radius: 2px;
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.08), inset 0 1px 2px rgba(255, 255, 255, 0.75);
+  color: #444;
+  font: inherit;
+  margin: 0 1px 0 0;
+  text-shadow: 0 1px 0 rgb(240, 240, 240);
+  min-width: 4em;
+  padding: 0.4em 0.8em;
+  vertical-align: middle;
+  text-decoration: none;
+  &:active {
+    background-image: -webkit-linear-gradient(#e7e7e7, #e7e7e7 38%, #d7d7d7);
+    box-shadow: none;
+    text-shadow: none;
+    outline: none;
+  }
+}
+
+*, *:before, *:after {
+  box-sizing: border-box;
+}
+
+body {
+  background: #fff;
+  color: $color-text;
+  margin: 0;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-content: center;
+  align-items: flex-start;
+}
+
+a {
+  color: $color-link;
+}
+
+section {
+  padding: $spacing-medium;
+  flex-basis: 20em;
+}
+
+.link-list {
+  padding-left: 0;
+  li {
+    position: relative;
+    font-size: 1.1em;
+    display:flex;
+    list-style: none;
+    margin-bottom: $spacing-large;
+    a {
+      flex-grow: 1;
+    }
+  }
+}
+
+.button {
+  @extend %chrome-button;
+}
+
+.clear-history {
+  position:relative;
+  z-index: 2;
+  transition: transform $confirm-tranistion-length ease;
+}
+
+.value-increment {
+  position: relative;
+  z-index: 1;
+}
+
+.confirm-button {
+  position:absolute;
+  top:0;
+  left:0;
+  z-index: 0;
+  width: 7em;
+  background-image: -webkit-linear-gradient(#38BF68, #38BF68 38%, #56CA74);
+  box-shadow:none;
+  text-shadow: none;
+  color: #fff;
+  &:active {
+    background-image: -webkit-linear-gradient(#38BF68 - #181818, #38BF68 - #181818 38%, #56CA74 - #181818);
+  }
+}
+
+.pending-confirm {
+  .clear-history {
+    transform: translateX(6.5em);
+  }
+
+}
+
+.value-increment {
+  @extend %chrome-button;
+}
+
+.credit {
+  position:absolute;
+  bottom: 0;
+  right: 0;
+  padding: $spacing-medium;
+  font-size: 0.9em;
+}
