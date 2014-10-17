@@ -41,6 +41,13 @@ section {
   padding: 0.6em;
   flex-basis: 20em; }
 
+h1 {
+  font-size: 1.8em; }
+
+h2 {
+  margin-bottom: 0.6em;
+  font-size: 1.2em; }
+
 .link-list {
   padding-left: 0; }
   .link-list li {
