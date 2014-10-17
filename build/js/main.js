@@ -38,7 +38,6 @@ function newTabPageMain () {
   });
 
   document.getElementById('clear-history-confirm').addEventListener('click', function (e) {
-    console.log(Date);
     var increment = document.getElementById('history-increment').value,
         today = new Date().getTime(),
         miliInDay = 86400000;

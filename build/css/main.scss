@@ -7,6 +7,8 @@ $color-background: #fff;
 $color-text: rgb(92, 97, 102);
 $color-inactive: #999;
 $color-link: rgb(17, 85, 204);
+$color-success: #56CA74;
+$color-wait: #E3BF32;
 
 $confirm-tranistion-length: 0.4s;
 
@@ -75,6 +77,26 @@ section {
 
 .button {
   @extend %chrome-button;
+  position: relative;
+
+  &:after {
+    display: block;
+    float: right;
+  }
+
+  &.in-progress {
+    &:after {
+      content: "\2713";
+      color: $color-wait;
+    }
+  }
+
+  &.is-complete {
+    &:after {
+      content: "\2713";
+      color: $color-success;
+    }
+  }
 }
 
 .clear-history {

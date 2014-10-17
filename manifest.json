@@ -1,10 +1,10 @@
 {
   "manifest_version": 2,
 
-  "name": "Developer's New Tab",
-  "description": "A new tab screen that's fast, simple, and customizable.",
+  "name": "Lightweight New Tab Page",
+  "description": "Designed to be fast & simple. Just stuff you want, nothing you don't.",
 
-  "version": "0.0.0",
+  "version": "0.1.0",
 
   "permissions": [
     "tabs",

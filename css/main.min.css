@@ -52,6 +52,17 @@ section {
     .link-list li a {
       flex-grow: 1; }
 
+.button {
+  position: relative; }
+  .button:after {
+    display: block;
+    float: right; }
+  .button.in-progress:after {
+    content: "\2713";
+    color: #E3BF32; }
+  .button.is-complete:after {
+    content: "\2713";
+    color: #56CA74; }
 
 .clear-history {
   position: relative;
@@ -78,12 +89,9 @@ section {
 .pending-confirm .clear-history {
   transform: translateX(6.5em); }
 
-
 .credit {
   position: absolute;
   bottom: 0;
   right: 0;
   padding: 0.6em;
   font-size: 0.9em; }
-
-/*# sourceMappingURL=main.min.css.map */

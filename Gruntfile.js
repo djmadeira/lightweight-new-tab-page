@@ -16,10 +16,10 @@ module.exports = function(grunt) {
         tasks: ['default']
       }
     },
-    libsass: {
+    sass: {
       default: {
         options: {
-          sourcemap:true,
+          sourcemap: true,
         },
         src: 'build/css/main.scss',
         dest: 'css/main.min.css'
@@ -39,10 +39,10 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-autoprefixer');
-  grunt.loadNpmTasks('grunt-libsass');
+  grunt.loadNpmTasks('grunt-sass');
   grunt.loadNpmTasks('grunt-inline');
 
-  grunt.registerTask('default', [/*'uglify',*/ 'libsass', 'inline']);
+  grunt.registerTask('default', [/*'uglify',*/ 'sass', 'inline']);
   grunt.registerTask('watcher', ['watch']);
 
 };
