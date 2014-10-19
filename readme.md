@@ -6,11 +6,18 @@ I don't like the default new tab, and I haven't found a different one that added
 
 # Installation
 
-To install, download `chrome-new-tab-extension.crx`. Go to chrome://extensions (just paste that in your address bar.) Drag the file into that window.
+* Download `chrome-new-tab-extension.crx`.
+* Go to chrome://extensions (just paste that in your address bar.)
+* Drag the file into that window.
 
-It loads in around 50ms if it hasn't been loaded in a while (the default takes around 500). This may not matter to some people, but to me it's important. Plus, I don't need it phoning home every time I open a new browser tab.
+# Planned features
 
-I plan to add some lightweight customization options in the future, so you can add your own quick links, and a nice recently closed tab recovery section. But it's never going to get a big feature list with a weather widget and flickr photos and that nonsense. It's just going to be a straightforward new tab page for people who like that sort of thing.
+I always plan to keep this simple & fast, so I won't add a ton of features. I'm open to good ideas, but ultimately this is for me. That said, this is licensed under WTFPL; if you want to change it, be my guest!
+
+* Keyboard shortcut reminders
+* Recently closed tabs
+* Reorder custom links
+* Submit to Chrome Web Store
 
 # Changelog
 
