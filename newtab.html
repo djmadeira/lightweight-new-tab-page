@@ -35,7 +35,8 @@ body {
   flex-wrap: wrap;
   justify-content: center;
   align-content: center;
-  align-items: flex-start; }
+  align-items: flex-start;
+  padding-bottom: 2.4em; }
 
 a {
   color: #1155cc; }
@@ -51,6 +52,16 @@ h2 {
   margin-bottom: 0.6em;
   font-size: 1.2em; }
 
+textarea {
+  -webkit-appearance: none;
+  background: #5c6166;
+  color: #fff;
+  border: 1px solid rgba(0, 0, 0, 0.25);
+  border-radius: 3px;
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.08) inset 0 1px 2px rgba(255, 255, 255, 0.2);
+  padding: 0.6em;
+  font-size: 1em; }
+
 .link-list {
   padding-left: 0; }
   .link-list li {
@@ -59,20 +70,62 @@ h2 {
     display: flex;
     list-style: none;
     margin-bottom: 0.85em; }
-    .link-list li a {
-      flex-grow: 1; }
 
 .button {
-  position: relative; }
+  position: relative;
+  flex-grow: 1; }
   .button:after {
     display: block;
     float: right; }
   .button.in-progress:after {
-    content: "\2713";
-    color: #E3BF32; }
+    content: "\2026";
+    color: #EF7400;
+    line-height: 0.5; }
   .button.is-complete:after {
     content: "\2713";
-    color: #56CA74; }
+    color: #56CA74;
+    line-height: 1; }
+
+.customizer {
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  bottom: 0;
+  display: block;
+  padding: 0.6em;
+  background: #fff;
+  box-shadow: 0 0 5px 2px #fff;
+  border-radius: 5px; }
+  .customizer .button {
+    padding: 0.2em 0.4em;
+    display: inline-block;
+    margin-right: 0.2em; }
+  .customizer .overlay-group {
+    display: inline-block; }
+
+.overlay-group {
+  position: relative; }
+  .overlay-group.is-active .overlay-content {
+    pointer-events: auto;
+    transform: translateY(0);
+    opacity: 1; }
+  .overlay-group.is-active .overlay-toggle {
+    background-image: -webkit-linear-gradient(#e7e7e7, #e7e7e7 38%, #d7d7d7); }
+
+.overlay-content {
+  position: absolute;
+  bottom: 100%;
+  margin-bottom: 0.6em;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(50%);
+  transition: opacity 0.4s ease, transform 0.4s ease; }
+
+.css-text {
+  font-family: monospace;
+  min-height: 14em;
+  min-width: 12em;
+  font-size: 1.2em; }
 
 .clear-history {
   position: relative;
@@ -99,19 +152,74 @@ h2 {
 .pending-confirm .clear-history {
   transform: translateX(6.5em); }
 
+.new-link {
+  display: block; }
+
+.new-link-input {
+  -webkit-appearance: none;
+  -webkit-user-select: none;
+  display: block;
+  border: 1px solid rgba(0, 0, 0, 0.25);
+  border-radius: 2px;
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.08);
+  padding: 0.4em 0.8em;
+  text-decoration: none;
+  margin-right: 2px;
+  font-size: 1em; }
+
+.edit-button {
+  display: none;
+  text-indent: -99999px;
+  line-height: 0;
+  background: #efefef;
+  border-radius: 50%;
+  text-decoration: none;
+  flex-grow: 0;
+  flex-shrink: 0;
+  width: 2em;
+  height: 2em;
+  margin-left: 2px;
+  cursor: pointer; }
+  .edit-button:after {
+    display: block;
+    line-height: 2;
+    text-indent: 0;
+    text-align: center; }
+  .edit-button.confirm:after {
+    content: "\2713";
+    color: #56CA74; }
+  .edit-button.remove:after {
+    content: "\2717";
+    color: #EB3546; }
+
+.is-editing .edit-button {
+  display: block; }
+
 .credit {
-  position: absolute;
+  position: fixed;
+  z-index: 1000;
   bottom: 0;
   right: 0;
   padding: 0.6em;
-  font-size: 0.9em; }
+  font-size: 0.9em;
+  background: #fff;
+  box-shadow: 0 0 5px 2px #fff;
+  border-radius: 5px; }
 
 </style>
+  <style id="custom-css" type="text/css"></style>
   <script type="text/javascript" src="build/js/main.js"></script>
+  <template id="custom-link-template"><li><a class="button custom-link" href="{{href}}">{{title}}</a><a class="edit-button remove">Remove</a></li></template>
+  <template id="new-link-template"><li id="new-link" class="new-link"><input type="text" id="new-link-title" class="new-link-input" placeholder="title"><input type="text" id="new-link-href" class="new-link-input" placeholder="url"><a id="new-link-confirm" href="#" class="edit-button confirm">Done</a></li></template>
 </head>
 <body>
+  <section class="custom-links">
+    <h1>My Links</h1>
+    <ul id="custom-links" class="link-list">
+    </ul>
+  </section>
   <section class="quick-links">
-    <h1>Quick Links</h1>
+    <h1>Chrome Links</h1>
     <ul class="link-list">
       <h2>History</h2>
       <li><a class="button" href="chrome://history">History</a></li>
@@ -120,12 +228,12 @@ h2 {
       <li><a class="button" href="chrome://settings">Settings</a></li>
       <li><a class="button" href="chrome://extensions">Extensions</a></li>
       <li><a class="button" href="chrome://bookmarks">Bookmarks Manager</a></li>
-      <h2>Chrome Internals</h2>
+      <h2>Internals</h2>
       <li><a class="button" href="chrome://chrome-urls">Chrome URLs</a></li>
       <li><a class="button" href="chrome://apps">Apps</a></li>
       <li><a class="button" href="chrome://flags">Flags</a></li>
       <li><a class="button" href="chrome://net-internals#dns">Host Cache</a></li>
-    </ul> 
+    </ul>
   </section>
   <section class="utilities">
     <h1>Utilities</h1>
@@ -135,5 +243,12 @@ h2 {
       <li><a id="clear-history" class="clear-history button" href="#">Clear history</a> <input class="value-increment" type="button" id="history-increment" value="1 day"><a id="clear-history-confirm" class="button confirm-button" href="#">You sure?</a></li>
     </ul>
   </section>
-  <footer class="credit"><a href="http://djmadeira.com">Created by DJ Madeira</a></footer>
+  <section class="customizer">
+    <a class="button" id="edit-links-toggle">Edit links</a>
+    <div class="overlay-group">
+      <input type="button" id="custom-css_toggle" class="overlay-toggle button" value="CSS">
+      <textarea id="custom-css-field" class="css-text overlay-content" placeholder="Type some CSS here"></textarea>
+    </div>
+  </section>
+  <footer class="credit"><a href="http://djmadeira.com">Created by DJ Madeira</a> - <a class="github" href="https://github.com/djmadeira/lightweight-new-tab-page">GitHub</a></footer>
 </body>

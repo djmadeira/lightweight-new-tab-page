@@ -1,11 +1,19 @@
 <head>
   <title>New Tab</title>
   <link rel="stylesheet" href="../../css/main.min.css?inline=true">
+  <style id="custom-css" type="text/css"></style>
   <script type="text/javascript" src="build/js/main.js"></script>
+  <template id="custom-link-template"><li><a class="button custom-link" href="{{href}}">{{title}}</a><a class="edit-button remove">Remove</a></li></template>
+  <template id="new-link-template"><li id="new-link" class="new-link"><input type="text" id="new-link-title" class="new-link-input" placeholder="title"><input type="text" id="new-link-href" class="new-link-input" placeholder="url"><a id="new-link-confirm" href="#" class="edit-button confirm">Done</a></li></template>
 </head>
 <body>
+  <section class="custom-links">
+    <h1>My Links</h1>
+    <ul id="custom-links" class="link-list">
+    </ul>
+  </section>
   <section class="quick-links">
-    <h1>Quick Links</h1>
+    <h1>Chrome Links</h1>
     <ul class="link-list">
       <h2>History</h2>
       <li><a class="button" href="chrome://history">History</a></li>
@@ -14,12 +22,12 @@
       <li><a class="button" href="chrome://settings">Settings</a></li>
       <li><a class="button" href="chrome://extensions">Extensions</a></li>
       <li><a class="button" href="chrome://bookmarks">Bookmarks Manager</a></li>
-      <h2>Chrome Internals</h2>
+      <h2>Internals</h2>
       <li><a class="button" href="chrome://chrome-urls">Chrome URLs</a></li>
       <li><a class="button" href="chrome://apps">Apps</a></li>
       <li><a class="button" href="chrome://flags">Flags</a></li>
       <li><a class="button" href="chrome://net-internals#dns">Host Cache</a></li>
-    </ul> 
+    </ul>
   </section>
   <section class="utilities">
     <h1>Utilities</h1>
@@ -29,5 +37,12 @@
       <li><a id="clear-history" class="clear-history button" href="#">Clear history</a> <input class="value-increment" type="button" id="history-increment" value="1 day"><a id="clear-history-confirm" class="button confirm-button" href="#">You sure?</a></li>
     </ul>
   </section>
-  <footer class="credit"><a href="http://djmadeira.com">Created by DJ Madeira</a></footer>
+  <section class="customizer">
+    <a class="button" id="edit-links-toggle">Edit links</a>
+    <div class="overlay-group">
+      <input type="button" id="custom-css_toggle" class="overlay-toggle button" value="CSS">
+      <textarea id="custom-css-field" class="css-text overlay-content" placeholder="Type some CSS here"></textarea>
+    </div>
+  </section>
+  <footer class="credit"><a href="http://djmadeira.com">Created by DJ Madeira</a> - <a class="github" href="https://github.com/djmadeira/lightweight-new-tab-page">GitHub</a></footer>
 </body>
