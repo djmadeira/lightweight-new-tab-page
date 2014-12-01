@@ -33,16 +33,43 @@ module.exports = function(grunt) {
         src: [ 'build/html/newtab.html' ],
         dest: [ 'newtab.html' ]
       }
+    },
+    copy: {
+      pkg: {
+        files: [
+          {
+            expand: true,
+            cwd: 'js',
+            src: ['*'],
+            dest: 'pkg/js'
+          },
+          {
+            expand: true,
+            cwd: 'img',
+            src: ['*.png'],
+            dest: 'pkg/img/'
+          },
+          {
+            src: ['newtab.html'],
+            dest: 'pkg/'
+          },
+          {
+            src: ['manifest.json'],
+            dest: 'pkg/'
+          },
+        ]
+      }
     }
   });
 
   grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-contrib-watch');
+  grunt.loadNpmTasks('grunt-contrib-copy');
   grunt.loadNpmTasks('grunt-autoprefixer');
   grunt.loadNpmTasks('grunt-sass');
   grunt.loadNpmTasks('grunt-inline');
 
-  grunt.registerTask('default', [/*'uglify',*/ 'sass', 'inline']);
-  grunt.registerTask('watcher', ['watch']);
+  grunt.registerTask('default', ['sass', 'inline', 'uglify']);
+  grunt.registerTask('pkg', ['copy:pkg']);
 
 };

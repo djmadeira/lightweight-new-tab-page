@@ -6,6 +6,8 @@ I don't like the default new tab, and I haven't found a different one that added
 
 # Installation
 
+Install from the [chrome web store](https://chrome.google.com/webstore/detail/lightweight-new-tab-page/cahfgmimpeeiibiicmeengglhpnhbkki), or:
+
 * Download `chrome-new-tab-extension.crx`.
 * Go to chrome://extensions (just paste that in your address bar.)
 * Drag the file into that window.
@@ -20,6 +22,10 @@ I always plan to keep this simple & fast, so I won't add a ton of features. I'm 
 * Submit to Chrome Web Store
 
 # Changelog
+
+## 1.2
+* Improved accessiblity
+* Packaged for web store
 
 ## 1.1
 * Added customizable links

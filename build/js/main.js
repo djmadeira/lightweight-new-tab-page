@@ -10,7 +10,9 @@ function newTabPageMain () {
   var editLinksButton = document.getElementById('edit-links-toggle');
   var customLinks = JSON.parse(localStorage.getItem('newtab-custom-links')) ||
       [ // Default
-        ['Twitter', 'https://twitter.com']
+        ['Twitter', 'https://twitter.com'],
+        ['Facebook', 'https://www.facebook.com'],
+        ['Reddit', 'http://www.reddit.com']
       ];
   var customLinksUl = document.getElementById('custom-links');
   var linkTemplate = document.getElementById('custom-link-template');

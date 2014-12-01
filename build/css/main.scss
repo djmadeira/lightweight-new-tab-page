@@ -4,6 +4,7 @@ $spacing-medium: 0.6em;
 $spacing-large: 0.85em;
 
 $color-background: #fff;
+$color-overlay-bg: rgba(255,255,255,0.5);
 $color-text: rgb(92, 97, 102);
 $color-inactive: #999;
 $color-link: rgb(17, 85, 204);
@@ -33,6 +34,7 @@ $overlay-index: 1000;
   padding: 0.4em 0.8em;
   vertical-align: middle;
   text-decoration: none;
+  text-align: left;
   &:active {
     background-image: $gradient-flip;
     box-shadow: none;
@@ -131,13 +133,12 @@ textarea {
   left: 0;
   bottom: 0;
   display: block;
-  padding: $spacing-medium;
-  background: $color-background;
-  box-shadow: 0 0 5px 2px $color-background;
+  background: $color-overlay-bg;
+  box-shadow: 0 0 5px 2px $color-overlay-bg;
   border-radius: 5px;
 
   .button {
-    padding: 0.2em 0.4em;
+    padding: 0.1em 0.4em;
     display: inline-block;
     margin-right: 0.2em;
   }
@@ -241,6 +242,8 @@ textarea {
   line-height: 0;
   background: #efefef;
   border-radius: 50%;
+  font-size: 1em;
+  border: none;
   text-decoration: none;
   flex-grow: 0;
   flex-shrink: 0;
@@ -288,7 +291,7 @@ textarea {
   right: 0;
   padding: $spacing-medium;
   font-size: 0.9em;
-  background: $color-background;
-  box-shadow: 0 0 5px 2px $color-background;
+  background: $color-overlay-bg;
+  box-shadow: 0 0 5px 2px $color-overlay-bg;
   border-radius: 5px;
 }
