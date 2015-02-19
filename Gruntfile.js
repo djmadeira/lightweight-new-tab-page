@@ -3,13 +3,6 @@ module.exports = function(grunt) {
   // Project configuration.
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
-    uglify: {
-      default: {
-        files: {
-          'js/main.min.js': 'build/js/main.js'
-        }
-      }
-    },
     watch: {
       default: {
         files: ['build/**/*.{js,scss,png,jpeg,jpg,html}'],
@@ -58,6 +51,11 @@ module.exports = function(grunt) {
             dest: 'pkg/'
           },
         ]
+      },
+      js: {
+        files: {
+          'js/main.js': 'build/js/main.js'
+        }
       }
     }
   });
@@ -69,7 +67,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-sass');
   grunt.loadNpmTasks('grunt-inline');
 
-  grunt.registerTask('default', ['sass', 'inline', 'uglify']);
+  grunt.registerTask('default', ['sass', 'inline', 'copy:js']);
   grunt.registerTask('pkg', ['copy:pkg']);
 
 };

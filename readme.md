@@ -18,6 +18,9 @@ I always plan to keep this simple & fast, so I won't add a ton of features. I'm 
 
 # Changelog
 
+## 1.2.3
+* Fixed a bug where custom links didn't work if you didn't already have the localStorage records set
+
 ## 1.2
 * Improved accessiblity
 * Packaged for web store
