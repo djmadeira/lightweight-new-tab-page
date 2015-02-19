@@ -6,7 +6,7 @@
   "description": "Lightning fast loading, full CSS customization, and lots of handy tools. Just stuff you want, nothing you don't.",
   "author": "DJ Madeira",
 
-  "version": "1.2.0",
+  "version": "1.2.2",
 
   "permissions": [
     "tabs",
