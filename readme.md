@@ -2,11 +2,17 @@
 
 I don't like the default new tab, and I haven't found a different one that added any more value for me than the default. So I made a ridiculously simple page of my own. 
 
-<img src="screenshot.png">
+<img src="img/screenshot-1.png">
 
 # Installation
 
-Install from the [chrome web store](https://chrome.google.com/webstore/detail/lightweight-new-tab-page/cahfgmimpeeiibiicmeengglhpnhbkki), or you can [build it from source](https://developer.chrome.com/extensions/packaging).
+Install from the [chrome web store](https://chrome.google.com/webstore/detail/lightweight-new-tab-page/cahfgmimpeeiibiicmeengglhpnhbkki), or you can [build it from source](https://developer.chrome.com/extensions/packaging):
+
+    $ git clone https://github.com/djmadeira/lightweight-new-tab-page.git
+    $ npm install
+    $ grunt pkg
+
+Go to Chrome -> Extensions, click "Load unpacked extension" and select the pkg folder.
 
 # Planned features
 

@@ -20,6 +20,7 @@
     "grunt-contrib-watch": "^0.6.1",
     "grunt-inline": "^0.3.2",
     "grunt-libsass": "^0.2.0",
+    "grunt-mocha": "^0.4.12",
     "grunt-sass": "^0.16.0"
   }
 }

@@ -57,7 +57,14 @@ module.exports = function(grunt) {
           'js/main.js': 'build/js/main.js'
         }
       }
-    }
+    },
+    mocha: {
+      test: {
+        options: {
+        },
+        src: ['tests/*.html'],
+      },
+    },
   });
 
   grunt.loadNpmTasks('grunt-contrib-uglify');
@@ -66,6 +73,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-autoprefixer');
   grunt.loadNpmTasks('grunt-sass');
   grunt.loadNpmTasks('grunt-inline');
+  grunt.loadNpmTasks('grunt-mocha');
 
   grunt.registerTask('default', ['sass', 'inline', 'copy:js']);
   grunt.registerTask('pkg', ['copy:pkg']);

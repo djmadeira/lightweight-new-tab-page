@@ -12,7 +12,8 @@
     "tabs",
     "browsingData",
     "history",
-    "storage"
+    "storage",
+    "file://*/*"
   ],
 
   "chrome_url_overrides" : {
