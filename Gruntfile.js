@@ -1,81 +1,64 @@
-module.exports = function(grunt) {
+var pickFiles = require('broccoli-static-compiler');
+var compileSass = require('broccoli-sass');
+var mergeTrees = require('broccoli-merge-trees');
+var imagemin = require('broccoli-imagemin');
 
-  // Project configuration.
-  grunt.initConfig({
-    pkg: grunt.file.readJSON('package.json'),
-    watch: {
-      default: {
-        files: ['build/**/*.{js,scss,png,jpeg,jpg,html}'],
-        tasks: ['default']
-      }
-    },
-    sass: {
-      default: {
-        options: {
-          sourcemap: true,
-        },
-        src: 'build/css/main.scss',
-        dest: 'css/main.min.css'
-      }
-    },
-    inline: {
-      default: {
-        options: {
-          tag: 'inline'
-        },
-        src: [ 'build/html/newtab.html' ],
-        dest: [ 'newtab.html' ]
-      }
-    },
-    copy: {
-      pkg: {
-        files: [
-          {
-            expand: true,
-            cwd: 'js',
-            src: ['*'],
-            dest: 'pkg/js'
-          },
-          {
-            expand: true,
-            cwd: 'img',
-            src: ['*.png'],
-            dest: 'pkg/img/'
-          },
-          {
-            src: ['newtab.html'],
-            dest: 'pkg/'
-          },
-          {
-            src: ['manifest.json'],
-            dest: 'pkg/'
-          },
-        ]
-      },
-      js: {
-        files: {
-          'js/main.js': 'build/js/main.js'
-        }
-      }
-    },
-    mocha: {
-      test: {
-        options: {
-        },
-        src: ['tests/*.html'],
-      },
-    },
-  });
+var JPEGRecompress = require('imagemin-jpeg-recompress');
+var PNGCrush = require('imagemin-pngcrush');
+var SVGO = require('imagemin-svgo');
 
-  grunt.loadNpmTasks('grunt-contrib-uglify');
-  grunt.loadNpmTasks('grunt-contrib-watch');
-  grunt.loadNpmTasks('grunt-contrib-copy');
-  grunt.loadNpmTasks('grunt-autoprefixer');
-  grunt.loadNpmTasks('grunt-sass');
-  grunt.loadNpmTasks('grunt-inline');
-  grunt.loadNpmTasks('grunt-mocha');
+module.exports = function (grunt) {
+	grunt.initConfig({
+		pkg: grunt.file.readJSON('package.json'),
+		broccoli: {
+			default: {
+				dest: 'dist',
+				config: function () {
+					var mainCSS = 'build/css';
+					mainCSS = pickFiles(mainCSS, {
+						srcDir: '/',
+						files: ['**/*.scss'],
+						destDir: '/css'
+					});
+					mainCSS = compileSass(['build/css'], 'main.scss', 'css/main.css', {outputStyle: 'expanded'});
 
-  grunt.registerTask('default', ['sass', 'inline', 'copy:js']);
-  grunt.registerTask('pkg', ['copy:pkg']);
+					var js = 'build/js';
+					js = pickFiles(js, {
+						srcDir: '/',
+						destDir: '/js'
+					});
 
-};
+					var img = 'build/images';
+					img = pickFiles(img, {
+						srcDir: '/',
+						destDir: '/images'
+					});
+					img = imagemin(img, {
+						interlaced: true,
+		        optimizationLevel: 3,
+		        progressive: true,
+					});
+
+					var html = 'build/html';
+					html = pickFiles(html, {
+						srcDir: '/',
+						destDir: '/templates'
+					});
+
+					var pkgFiles = 'build/';
+					pkgFiles = pickFiles(pkgFiles, {
+						srcDir: '/',
+						files: ['manifest.json'],
+						destDir: '/'
+					});
+
+					return mergeTrees([mainCSS, js, img, html, pkgFiles]);
+				}
+			}
+		}
+	});
+
+	grunt.loadNpmTasks('grunt-broccoli');
+	grunt.registerTask('default', ['broccoli:default:build']);
+	grunt.registerTask('watch', ['broccoli:default:watch']);
+}

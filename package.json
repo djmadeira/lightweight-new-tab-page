@@ -13,14 +13,14 @@
   "author": "DJ Madeira",
   "license": "ISC",
   "devDependencies": {
+    "broccoli-imagemin": "^0.2.1",
+    "broccoli-merge-trees": "^0.2.1",
+    "broccoli-sass": "^0.6.4",
+    "broccoli-static-compiler": "^0.2.1",
     "grunt": "^0.4.5",
-    "grunt-autoprefixer": "^1.0.0",
-    "grunt-contrib-copy": "^0.7.0",
-    "grunt-contrib-uglify": "^0.5.1",
-    "grunt-contrib-watch": "^0.6.1",
-    "grunt-inline": "^0.3.2",
-    "grunt-libsass": "^0.2.0",
-    "grunt-mocha": "^0.4.12",
-    "grunt-sass": "^0.16.0"
+    "grunt-broccoli": "^0.4.0",
+    "imagemin-jpeg-recompress": "^4.2.0",
+    "imagemin-pngcrush": "^4.0.0",
+    "imagemin-svgo": "^4.1.2"
   }
 }

@@ -1,3 +1,5 @@
 node_modules
+dist
+tmp
 private
-img/store-*
+assets/store-*
