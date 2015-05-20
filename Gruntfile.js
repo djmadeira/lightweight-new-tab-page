@@ -1,3 +1,5 @@
+var fs = require('fs');
+
 var pickFiles = require('broccoli-static-compiler');
 var compileSass = require('broccoli-sass');
 var mergeTrees = require('broccoli-merge-trees');
@@ -28,6 +30,12 @@ module.exports = function (grunt) {
 						destDir: '/js'
 					});
 
+          var lib = 'build/lib';
+          lib = pickFiles(lib, {
+            srcDir: '/',
+            destDir: '/lib'
+          });
+
 					var img = 'build/images';
 					img = pickFiles(img, {
 						srcDir: '/',
@@ -52,7 +60,7 @@ module.exports = function (grunt) {
 						destDir: '/'
 					});
 
-					return mergeTrees([mainCSS, js, img, html, pkgFiles]);
+					return mergeTrees([mainCSS, js, img, html, lib, pkgFiles]);
 				}
 			}
 		}
@@ -61,4 +69,15 @@ module.exports = function (grunt) {
 	grunt.loadNpmTasks('grunt-broccoli');
 	grunt.registerTask('default', ['broccoli:default:build']);
 	grunt.registerTask('watch', ['broccoli:default:watch']);
+  grunt.registerTask('pkg', 'Package for the chrome webstore', packageExtension);
+};
+
+function packageExtension() {
+  // remove the data-env flag from the body so our unit tests, etc. don't run
+  var file = fs.readFileSync('./dist/templates/newtab.html', {encoding: 'utf8'});
+  console.log(file);
+
+  file = file.replace('data-env="dev"', 'data-env="prod"');
+
+  fs.writeFileSync('./dist/templates/newtab.html', file);
 }

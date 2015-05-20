@@ -5,9 +5,11 @@ function newTabPageMain () {
   var links = document.querySelectorAll('a');
   var overlayToggles = document.querySelectorAll('.overlay-toggle');
   var customCSS = document.getElementById('custom-css');
-  var customCSSField = document.getElementById('custom-css-field')
+  var customCSSField = document.getElementById('custom-css-field');
   var editLinksButton = document.getElementById('edit-links-toggle');
   var customLinks = JSON.parse(localStorage.getItem('newtab-custom-links'));
+  var i=0;
+
   if (!customLinks) {
     customLinks = [ // Default
       ['Twitter', 'https://twitter.com'],
@@ -95,7 +97,7 @@ function newTabPageMain () {
       localStorage.setItem('newtab-custom-links', JSON.stringify(customLinks));
 
       this.parentElement.parentElement.removeChild(this.parentElement);
-    }
+    };
 
     if (el) {
       el.addEventListener('click', eventListener);
@@ -107,16 +109,18 @@ function newTabPageMain () {
     }
   }
 
-  for (var i=0, j=links.length; i<j; i++) {
+  for (i=0, j=links.length; i<j; i++) {
     if (links[i].href.match(internalLink)) {
       links[i].addEventListener('click', handleLinkEvent);
     }
   }
 
-  for (var i=0, j=overlayToggles.length; i<j; i++) {
-    overlayToggles[i].addEventListener('click', function (e) {
-      this.parentElement.classList.toggle('is-active');
-    })
+  function overlayToggleHandler(e) {
+    this.parentElement.classList.toggle('is-active');
+  }
+
+  for (i=0, j=overlayToggles.length; i<j; i++) {
+    overlayToggles[i].addEventListener('click', overlayToggleHandler);
   }
 
   document.getElementById('clear-cache').addEventListener('click', function () {
@@ -178,7 +182,7 @@ function newTabPageMain () {
   });
 
   // Custom links setup
-  for (var i=0, j=customLinks.length; i<j; i++) {
+  for (i=0, j=customLinks.length; i<j; i++) {
     var link = replaceTemplateTags(linkTemplate, {
       'title': customLinks[i][0],
       'href': customLinks[i][1]
@@ -198,7 +202,7 @@ function newTabPageMain () {
     } else {
       enableLinkEditing();
       this.classList.add('is-active');
-      this.innerHTML = 'Done editing'
+      this.innerHTML = 'Done editing';
     }
-  })
+  });
 }
